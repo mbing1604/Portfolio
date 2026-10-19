@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liora Atelier — Jewelry Designer Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white: #ffffff;
+      --off-white: #fafafa;
+      --black: #1a1a1a;
+      --gold: #c9a84c;
+      --gold-light: #e8d5a3;
+      --grey: #6b6b6b;
+      --grey-light: #9a9a9a;
+      --grey-pale: #e8e8e8;
+      --side: 208px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 300;
+      background-color: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header */
+    header {
+      padding: 2.5rem var(--side);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--grey-pale);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 8rem var(--side) 7rem;
+      text-align: center;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+      color: var(--black);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--grey);
+      font-weight: 300;
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero-accent {
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* Portfolio sections */
+    .portfolio {
+      padding: 0 var(--side) 6rem;
+    }
+
+    .piece {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 0;
+      min-height: 70vh;
+    }
+
+    .piece:nth-child(even) {
+      direction: rtl;
+    }
+
+    .piece:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    /* Uneven vertical rhythm */
+    .piece:nth-child(1) { margin-bottom: 8rem; }
+    .piece:nth-child(2) { margin-bottom: 5rem; }
+    .piece:nth-child(3) { margin-bottom: 10rem; }
+    .piece:nth-child(4) { margin-bottom: 6rem; }
+    .piece:nth-child(5) { margin-bottom: 4rem; }
+
+    .piece-image {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .piece-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .piece:hover .piece-image img {
+      transform: scale(1.03);
+    }
+
+    /* Uneven image sizes */
+    .piece:nth-child(1) .piece-image {
+      height: 620px;
+    }
+    .piece:nth-child(2) .piece-image {
+      height: 480px;
+    }
+    .piece:nth-child(3) .piece-image {
+      height: 700px;
+    }
+    .piece:nth-child(4) .piece-image {
+      height: 520px;
+    }
+    .piece:nth-child(5) .piece-image {
+      height: 580px;
+    }
+
+    .piece-content {
+      padding: 4rem 3.5rem;
+      max-width: 480px;
+    }
+
+    .piece:nth-child(even) .piece-content {
+      margin-left: auto;
+    }
+
+    .piece-number {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+      font-weight: 400;
+    }
+
+    .piece h2 {
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      color: var(--black);
+    }
+
+    .piece p {
+      font-size: 0.95rem;
+      color: var(--grey);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .piece-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--black);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .piece-link:hover {
+      color: var(--gold);
+      border-color: var(--gold-light);
+    }
+
+    /* About strip */
+    .about {
+      padding: 6rem var(--side);
+      text-align: center;
+      border-top: 1px solid var(--grey-pale);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .about h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .about p {
+      color: var(--grey);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    /* Footer — pure white, black typography only */
+    footer {
+      padding: 4rem var(--side) 3.5rem;
+      text-align: center;
+      border-top: 1px solid var(--grey-pale);
+    }
+
+    footer .logo {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-links a {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey);
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--black);
+    }
+
+    .copyright {
+      font-size: 0.7rem;
+      color: var(--grey-light);
+      letter-spacing: 0.05em;
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      :root {
+        --side: 80px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --side: 40px;
+      }
+
+      header {
+        padding: 1.8rem var(--side);
+      }
+
+      nav {
+        gap: 1.5rem;
+      }
+
+      .hero {
+        padding: 5rem var(--side) 4rem;
+      }
+
+      .piece {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        margin-bottom: 4rem !important;
+      }
+
+      .piece:nth-child(even) {
+        direction: ltr;
+      }
+
+      .piece-image {
+        height: 420px !important;
+      }
+
+      .piece-content {
+        padding: 2.5rem 0;
+        max-width: 100%;
+      }
+
+      .about {
+        padding: 4rem var(--side);
+      }
+
+      footer {
+        padding: 3rem var(--side);
+      }
+    }
+
+    @media (max-width: 500px) {
+      :root {
+        --side: 24px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .piece-image {
+        height: 340px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">Liora <span>Atelier</span></a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-accent"></div>
+    <h1>Quiet forms.<br>Lasting light.</h1>
+    <p>Hand-finished jewelry designed in small numbers — each piece a study in proportion, material, and the spaces between.</p>
+  </section>
+
+  <main class="portfolio" id="work">
+
+    <!-- Piece 1: Image left -->
+    <article class="piece">
+      <div class="piece-image">
+        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=900&q=80" alt="Delicate gold necklace with fine links">
+      </div>
+      <div class="piece-content">
+        <div class="piece-number">01 — Necklace</div>
+        <h2>The Continuous Line</h2>
+        <p>A single unbroken chain of 18k gold, refined to near-weightlessness. Designed to rest against the collarbone with almost no presence until light finds it.</p>
+        <a href="#" class="piece-link">View piece</a>
+      </div>
+    </article>
+
+    <!-- Piece 2: Image right -->
+    <article class="piece">
+      <div class="piece-image">
+        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=900&q=80" alt="Gold ring with subtle detail">
+      </div>
+      <div class="piece-content">
+        <div class="piece-number">02 — Ring</div>
+        <h2>Solstice Band</h2>
+        <p>A narrow circle of brushed gold, its surface interrupted only by a single polished edge. Made to mark time without announcing it.</p>
+        <a href="#" class="piece-link">View piece</a>
+      </div>
+    </article>
+
+    <!-- Piece 3: Image left, taller -->
+    <article class="piece">
+      <div class="piece-image">
+        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80" alt="Gold earrings suspended">
+      </div>
+      <div class="piece-content">
+        <div class="piece-number">03 — Earrings</div>
+        <h2>Suspended Form</h2>
+        <p>Two elongated drops of solid gold, hollowed from within so they catch air and movement. Lightweight enough to be worn from morning until late.</p>
+        <a href="#" class="piece-link">View piece</a>
+      </div>
+    </article>
+
+    <!-- Piece 4: Image right -->
+    <article class="piece">
+      <div class="piece-image">
+        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=900&q=80" alt="Gold bracelet on neutral surface">
+      </div>
+      <div class="piece-content">
+        <div class="piece-number">04 — Bracelet</div>
+        <h2>Open Circle</h2>
+        <p>An open cuff in warm yellow gold, its ends gently tapered. The gap is intentional — a small interval that keeps the form from closing in on itself.</p>
+        <a href="#" class="piece-link">View piece</a>
+      </div>
+    </article>
+
+    <!-- Piece 5: Image left -->
+    <article class="piece">
+      <div class="piece-image">
+        <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=900&q=80" alt="Minimal gold pendant">
+      </div>
+      <div class="piece-content">
+        <div class="piece-number">05 — Pendant</div>
+        <h2>Single Point</h2>
+        <p>A small disc of high-polish gold suspended on a fine chain. Nothing more. Designed as a quiet anchor for everyday wear.</p>
+        <a href="#" class="piece-link">View piece</a>
+      </div>
+    </article>
+
+  </main>
+
+  <section class="about" id="about">
+    <h2>About the work</h2>
+    <p>Liora Atelier is the independent practice of a designer working between London and Lisbon. Each piece is developed slowly, refined through repeated making, and produced in limited numbers. The focus remains on proportion, material honesty, and the quiet presence of gold against skin.</p>
+  </section>
+
+  <footer id="contact">
+    <a href="#" class="logo">Liora <span>Atelier</span></a>
+    <div class="footer-links">
+      <a href="mailto:studio@lioraatelier.com">studio@lioraatelier.com</a>
+      <a href="#">Instagram</a>
+      <a href="#">Commission</a>
+    </div>
+    <p class="copyright">© 2026 Liora Atelier. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
