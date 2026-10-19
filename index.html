@@ -53,11 +53,28 @@
 
     /* Header */
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
       padding: 2.5rem var(--side);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: var(--white);
       border-bottom: 1px solid var(--grey-pale);
+      transform: translateY(0);
+      transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    header.header-hidden {
+      transform: translateY(-100%);
+    }
+
+    /* Spacer so content isn't under fixed header */
+    .header-spacer {
+      height: 5.5rem;
     }
 
     .logo {
@@ -158,14 +175,16 @@
 
     .piece-image img {
       width: 100%;
-      height: 100%;
+      height: 120%;
       object-fit: cover;
       display: block;
-      transition: transform 0.7s ease;
+      will-change: transform;
+      transform: translateY(0);
+      transition: transform 0.1s linear;
     }
 
     .piece:hover .piece-image img {
-      transform: scale(1.03);
+      /* hover scale handled carefully so it doesn't fight parallax */
     }
 
     /* Uneven image sizes */
@@ -361,7 +380,7 @@
 </head>
 <body>
 
-  <header>
+  <header id="site-header">
     <a href="#" class="logo">Liora <span>Atelier</span></a>
     <nav>
       <a href="#work">Work</a>
@@ -369,6 +388,7 @@
       <a href="#contact">Contact</a>
     </nav>
   </header>
+  <div class="header-spacer" aria-hidden="true"></div>
 
   <section class="hero">
     <div class="hero-accent"></div>
@@ -459,6 +479,82 @@
     </div>
     <p class="copyright">© 2026 Liora Atelier. All rights reserved.</p>
   </footer>
+
+  <script>
+    (function () {
+      // —— Delayed header hide / show ——
+      const header = document.getElementById('site-header');
+      let lastScrollY = window.scrollY;
+      let ticking = false;
+      let hideTimeout = null;
+      const HIDE_DELAY = 180; // ms delay before header slides away
+      const SHOW_THRESHOLD = 8; // px of upward scroll before showing again
+
+      function onScroll() {
+        const currentY = window.scrollY;
+
+        if (currentY <= 40) {
+          // Always show near top
+          clearTimeout(hideTimeout);
+          header.classList.remove('header-hidden');
+        } else if (currentY > lastScrollY + 2) {
+          // Scrolling down → hide after a short delay
+          clearTimeout(hideTimeout);
+          hideTimeout = setTimeout(function () {
+            header.classList.add('header-hidden');
+          }, HIDE_DELAY);
+        } else if (currentY < lastScrollY - SHOW_THRESHOLD) {
+          // Scrolling up → show immediately
+          clearTimeout(hideTimeout);
+          header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentY;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(onScroll);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // —— Subtle parallax on portfolio images ——
+      const images = document.querySelectorAll('.piece-image img');
+      const parallaxStrength = 0.12; // keep it subtle
+
+      function updateParallax() {
+        const viewportHeight = window.innerHeight;
+
+        images.forEach(function (img) {
+          const rect = img.parentElement.getBoundingClientRect();
+          // Only update when the image container is near the viewport
+          if (rect.bottom < -100 || rect.top > viewportHeight + 100) return;
+
+          // Progress of the image through the viewport (-0.5 … 0.5)
+          const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
+          const offset = progress * parallaxStrength * rect.height;
+
+          img.style.transform = 'translateY(' + offset.toFixed(2) + 'px)';
+        });
+      }
+
+      let parallaxTicking = false;
+      window.addEventListener('scroll', function () {
+        if (!parallaxTicking) {
+          window.requestAnimationFrame(function () {
+            updateParallax();
+            parallaxTicking = false;
+          });
+          parallaxTicking = true;
+        }
+      }, { passive: true });
+
+      // Initial positions
+      updateParallax();
+    })();
+  </script>
 
 </body>
 </html>
