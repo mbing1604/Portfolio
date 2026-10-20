@@ -30,11 +30,12 @@ color: var(--black);
 line-height: 1.6;
 -webkit-font-smoothing: antialiased;
 }
-html.modal-open,
 body.modal-open {
+position: fixed;
+left: 0;
+right: 0;
+width: 100%;
 overflow: hidden;
-}
-body.modal-open {
 padding-right: var(--scrollbar-w);
 }
 body.modal-open header {
@@ -305,7 +306,7 @@ nav { display: none; }
 </section>
 <main class="portfolio" id="work">
 <article class="piece" data-piece="0">
-<div class="piece-image" id="first-piece-image" data-open-gallery="0" role="button" tabindex="0" aria-label="Open The Continuous Line gallery">
+<div class="piece-image" id="first-piece-image" data-open-gallery="0" role="button" tabindex="-1" aria-label="Open The Continuous Line gallery">
 <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=900&q=80" alt="Delicate gold necklace with fine links">
 </div>
 <div class="piece-content">
@@ -316,7 +317,7 @@ nav { display: none; }
 </div>
 </article>
 <article class="piece" data-piece="1">
-<div class="piece-image" data-open-gallery="1" role="button" tabindex="0" aria-label="Open Solstice Band gallery">
+<div class="piece-image" data-open-gallery="1" role="button" tabindex="-1" aria-label="Open Solstice Band gallery">
 <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=900&q=80" alt="Gold ring with subtle detail">
 </div>
 <div class="piece-content">
@@ -327,7 +328,7 @@ nav { display: none; }
 </div>
 </article>
 <article class="piece" data-piece="2">
-<div class="piece-image" data-open-gallery="2" role="button" tabindex="0" aria-label="Open Suspended Form gallery">
+<div class="piece-image" data-open-gallery="2" role="button" tabindex="-1" aria-label="Open Suspended Form gallery">
 <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80" alt="Gold earrings suspended">
 </div>
 <div class="piece-content">
@@ -338,7 +339,7 @@ nav { display: none; }
 </div>
 </article>
 <article class="piece" data-piece="3">
-<div class="piece-image" data-open-gallery="3" role="button" tabindex="0" aria-label="Open Open Circle gallery">
+<div class="piece-image" data-open-gallery="3" role="button" tabindex="-1" aria-label="Open Open Circle gallery">
 <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=900&q=80" alt="Gold bracelet on neutral surface">
 </div>
 <div class="piece-content">
@@ -349,7 +350,7 @@ nav { display: none; }
 </div>
 </article>
 <article class="piece" data-piece="4">
-<div class="piece-image" data-open-gallery="4" role="button" tabindex="0" aria-label="Open Single Point gallery">
+<div class="piece-image" data-open-gallery="4" role="button" tabindex="-1" aria-label="Open Single Point gallery">
 <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=900&q=80" alt="Minimal gold pendant">
 </div>
 <div class="piece-content">
@@ -469,25 +470,25 @@ let currentLightboxIndex = 0;
 let scrollLockY = 0;
 const expandIcon = '<svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
 function lockScroll() {
-scrollLockY = window.scrollY || window.pageYOffset;
+scrollLockY = window.scrollY || window.pageYOffset || 0;
 document.documentElement.style.setProperty('--scrollbar-w', getScrollbarWidth() + 'px');
-document.documentElement.classList.add('modal-open');
+document.body.style.top = '-' + scrollLockY + 'px';
 document.body.classList.add('modal-open');
 }
 function unlockScroll() {
-document.documentElement.classList.remove('modal-open');
 document.body.classList.remove('modal-open');
+document.body.style.top = '';
 var html = document.documentElement;
 var prev = html.style.scrollBehavior;
 html.style.scrollBehavior = 'auto';
 window.scrollTo(0, scrollLockY);
-html.style.scrollBehavior = prev;
+html.style.scrollBehavior = prev || '';
 }
 function openModal(index) {
 const g = galleries[index];
 if (!g) return;
 lockScroll();
-if (document.activeElement && document.activeElement.blur) {
+if (document.activeElement && typeof document.activeElement.blur === 'function') {
 document.activeElement.blur();
 }
 currentGallery = g;
