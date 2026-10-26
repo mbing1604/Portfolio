@@ -70,6 +70,8 @@ nav a.is-active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;h
 .about-body h1,.contact-wrap h1{font-size:clamp(2.2rem,4vw,3.2rem);font-weight:400;line-height:1.2;margin-bottom:2rem}
 .about-body p{font-size:1.05rem;color:var(--grey);line-height:1.85;margin-bottom:1.5rem}
 .about-signature{margin-top:2.5rem;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--black)}
+.contact-hero{width:100%;padding:0 var(--side);height:min(52vh,480px);overflow:hidden;background:var(--white)}
+.contact-hero img{width:100%;height:100%;object-fit:cover;object-position:center center;display:block}
 .contact-wrap{padding:5rem var(--side) 6rem;max-width:920px;margin:0 auto;width:100%}
 .contact-wrap h1{margin-bottom:1rem}
 .contact-intro{font-size:1.05rem;color:var(--grey);line-height:1.75;margin-bottom:3rem}
@@ -117,7 +119,7 @@ nav a.is-active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;h
 .lightbox-next{right:1.25rem}
 .lightbox-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:.8rem;letter-spacing:.08em;z-index:2}
 @media (max-width:1100px){:root{--side:80px}}
-@media (max-width:900px){:root{--side:40px}header{padding:1.8rem var(--side)}nav{gap:1.5rem}.hero{padding:5rem var(--side) 4rem}.piece{grid-template-columns:1fr;min-height:auto;margin-bottom:4rem!important}.piece:nth-child(even){direction:ltr}.piece-image{height:420px!important}.piece-content{padding:2.5rem 0;max-width:100%}.about-hero{height:50vh}.about-body,.contact-wrap{padding:3.5rem var(--side) 4rem}.form-row{grid-template-columns:1fr}.modal-grid{grid-template-columns:repeat(2,1fr)}.modal{padding:1.75rem 1.25rem}}
+@media (max-width:900px){:root{--side:40px}header{padding:1.8rem var(--side)}nav{gap:1.5rem}.hero{padding:5rem var(--side) 4rem}.piece{grid-template-columns:1fr;min-height:auto;margin-bottom:4rem!important}.piece:nth-child(even){direction:ltr}.piece-image{height:420px!important}.piece-content{padding:2.5rem 0;max-width:100%}.about-hero{height:50vh}.contact-hero{height:40vh}.about-body,.contact-wrap{padding:3.5rem var(--side) 4rem}.form-row{grid-template-columns:1fr}.modal-grid{grid-template-columns:repeat(2,1fr)}.modal{padding:1.75rem 1.25rem}}
 @media (max-width:500px){:root{--side:24px}nav{gap:1rem}nav a{font-size:.7rem}.piece-image{height:340px!important}.modal-grid{grid-template-columns:1fr 1fr;gap:.5rem}}
 </style>
 </head>
@@ -220,6 +222,9 @@ nav a.is-active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;h
 </div>
 
 <div class="page" id="page-contact" data-page="contact">
+<div class="contact-hero">
+<img src="https://images.unsplash.com/photo-1617038260897-41a1f14f8dc5?w=1600&q=85" alt="Studio detail">
+</div>
 <div class="contact-wrap">
 <div class="eyebrow">Contact</div>
 <h1>Get in touch.</h1>
