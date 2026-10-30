@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--white:#fff;--off-white:#fafafa;--black:#1a1a1a;--gold:#c9a84c;--gold-light:#e8d5a3;--grey:#6b6b6b;--grey-light:#9a9a9a;--grey-pale:#e8e8e8;--side:208px;--scrollbar-w:0px}
+:root{--ivory:#F7F4EE;--ink:#252823;--olive:#4C5948;--gold:#AA8A52;--white:var(--ivory);--off-white:#F0EDE6;--black:var(--ink);--gold-light:#C4A86E;--grey:#5A5D58;--grey-light:#8A8D87;--grey-pale:#E5E1D8;--side:208px;--scrollbar-w:0px}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:auto}
 body{font-family:Inter,system-ui,sans-serif;font-weight:300;background:var(--white);color:var(--black);line-height:1.6;-webkit-font-smoothing:antialiased}
@@ -24,7 +24,7 @@ header.header-hidden{transform:translateY(-100%)}
 .logo span{color:var(--gold)}
 nav{display:flex;gap:2.5rem}
 nav a{font-size:.8rem;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--grey);transition:color .3s ease;position:relative}
-nav a:hover,nav a.is-active{color:var(--black)}
+nav a:hover,nav a.is-active{color:var(--olive)}
 nav a.is-active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--gold)}
 .page{display:none;opacity:0;transition:opacity .45s ease}
 .page.is-active{display:block}
@@ -58,7 +58,7 @@ nav a.is-active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;h
 .piece-link{position:relative;display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--black);padding-bottom:3px;cursor:pointer;font-family:inherit}
 .piece-link::before,.piece-link::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:100%}
 .piece-link::before{background:var(--gold)}
-.piece-link::after{background:var(--black);width:0;transition:width .4s ease-in}
+.piece-link::after{background:var(--olive);width:0;transition:width .4s ease-in}
 .piece-link:hover::after{width:100%}
 .page-footer{padding:4rem var(--side) 3.5rem;text-align:center;border-top:1px solid var(--grey-pale)}
 .page-footer .logo{font-size:1.3rem;margin-bottom:1.5rem;display:block}
@@ -80,15 +80,15 @@ nav a.is-active::after{content:'';position:absolute;left:0;right:0;bottom:-4px;h
 .form-field{display:flex;flex-direction:column;gap:.5rem}
 .form-field label{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey)}
 .form-field input,.form-field textarea{font-family:inherit;font-size:.95rem;font-weight:300;color:var(--black);background:transparent;border:none;border-bottom:1px solid var(--grey-pale);padding:.75rem 0;outline:none;transition:border-color .3s ease;width:100%;resize:vertical}
-.form-field input:focus,.form-field textarea:focus{border-bottom-color:var(--gold)}
+.form-field input:focus,.form-field textarea:focus{border-bottom-color:var(--olive)}
 .form-field textarea{min-height:120px;line-height:1.6}
-.form-submit{align-self:flex-start;margin-top:.5rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--black);padding:.85rem 2rem;border:1px solid var(--black);background:transparent;transition:background .3s ease,color .3s ease}
-.form-submit:hover{background:var(--black);color:var(--white)}
+.form-submit{align-self:flex-start;margin-top:.5rem;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);padding:.85rem 2rem;border:1px solid var(--olive);background:var(--olive);transition:background .3s ease,color .3s ease,border-color .3s ease}
+.form-submit:hover{background:var(--ink);border-color:var(--ink);color:var(--ivory)}
 .form-note{font-size:.8rem;color:var(--grey-light);margin-top:.5rem}
 .form-success{display:none;padding:1.25rem 0;font-size:.95rem;color:var(--grey)}
 .form-success.is-shown{display:block}
 .contact-meta{margin-top:3.5rem;padding-top:2rem;border-top:1px solid var(--grey-pale);display:flex;flex-wrap:wrap;gap:2rem;font-size:.85rem;color:var(--grey)}
-.contact-meta a:hover{color:var(--gold)}
+.contact-meta a:hover{color:var(--olive)}
 .modal-overlay{position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s ease}
 .modal-overlay.is-open{opacity:1;visibility:visible}
 .modal{background:var(--white);width:100%;max-width:920px;max-height:90vh;overflow-y:auto;position:relative;padding:2.5rem;transform:translateY(16px);transition:transform .35s cubic-bezier(.4,0,.2,1)}
